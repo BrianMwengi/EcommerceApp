@@ -5,31 +5,49 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+// Begin the declaration of the ProductController class, which extends the base Controller class.
 class ProductController extends Controller
 {
+    // A doc block comment to describe the following method.
+
     /**
      * Display a listing of the resource.
      */
+    
+    // The 'index' method is used to get a list of all 'Product' records.
     public function index()
     {
+        // Use Laravel's response helper to return a JSON response containing all 'Product' records.
+        // The second parameter, 200, is the HTTP status code for OK.
         return response()->json(Product::all(), 200);
     }
+
+    // Another doc block comment to describe the following method.
 
     /**
      * Store a newly created resource in storage.
      */
+    
+    // The 'store' method is used to validate the incoming request and create a new 'Product'.
     public function store(Request $request)
     {
+        // Validate the incoming HTTP request with the given rules.
+        // 'name' should be present and should not exceed 255 characters.
+        // 'description' and 'price' should be present.
+        // 'price' should also be a valid numeric value.
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
             'price' => 'required|numeric',
         ]);
     
+        // Create a new 'Product' record in the database with the validated data.
         $product = Product::create($validatedData);
     
+        // Return the created 'Product' as a JSON response.
+        // The second parameter, 201, is the HTTP status code for Created.
         return response()->json($product, 201);
-    }
+        }
 
     /**
      * Display the specified resource.
