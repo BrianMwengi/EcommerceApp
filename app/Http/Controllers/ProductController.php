@@ -75,8 +75,8 @@ class ProductController extends Controller
         // Validate the request data
         $validatedData = $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required',
-            'price' => 'required|numeric',
+            // 'description' => 'required',
+            // 'price' => 'required|numeric',
         ]);
 
         // Check if the product was found

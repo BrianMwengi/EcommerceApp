@@ -20,8 +20,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('products', ProductController::class);
+// Defines all CRUD routes for the 'products' resource using Laravel's API resource routing.
+Route::apiResource('products', ProductController::class); 
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+// Defines a POST route for user registration, handled by the 'register' method in the AuthController.
+Route::post('/register', [AuthController::class, 'register']); 
+
+// Defines a POST route for user login, handled by the 'login' method in the AuthController.
+Route::post('/login', [AuthController::class, 'login']); 
+
+// Defines a POST route for user logout, using Laravel Sanctum middleware for authentication, 
+// handled by the 'logout' method in the AuthController.
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']); 
